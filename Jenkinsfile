@@ -29,11 +29,6 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                     withCredentials([
-                     usernamePassword(credentials: 'github-cred' , usernameVaraible: USER , passwordVaraible: PWD)
-                     ]){
-                        echo "${USER} ${PWD}"
-                     }
                      echo "deploying"
                     //gv.deployApp()
                 }
