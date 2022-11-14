@@ -2,6 +2,11 @@ def gv
 
 pipeline {
     agent any
+    parameters {
+
+    choice(name:'VERSION' , choices: ['1','2','3'])
+    booleanParam(name : "execute" , defaultValue: true )
+    }
     stages {
         stage("init") {
             steps {
@@ -20,6 +25,11 @@ pipeline {
         }
         stage("build image") {
             steps {
+                when {
+                    expression {
+                        params.execute
+                    }
+                }
                 script {
                     echo "building image"
                     //gv.buildImage()
@@ -30,6 +40,7 @@ pipeline {
             steps {
                 script {
                      echo "deploying"
+                     echo "deploying version ${params.VERSION}"
                     //gv.deployApp()
                 }
             }
