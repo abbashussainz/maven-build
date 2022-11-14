@@ -24,12 +24,12 @@ pipeline {
             }
         }
         stage("build image") {
-            steps {
-                when {
-                    expression {
+            when {
+                expression {
                         params.execute
-                    }
                 }
+            }
+            steps {
                 script {
                     echo "building image"
                     //gv.buildImage()
