@@ -1,5 +1,5 @@
  pipeline {
-        agent none
+        agent any
 
         tools{
                 maven "Maven"
@@ -24,7 +24,7 @@
          
          stage("maven packaging"){
           steps{
-           sh 'mvn clean package'
+           sh 'mvn package'
           }
          }
         }
