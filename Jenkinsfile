@@ -47,5 +47,11 @@
           }
          }
          
+         stage("Logging Out ECR"){
+          steps{
+           sh 'docker logout'
+          }
+         }
+         
         }
  }
