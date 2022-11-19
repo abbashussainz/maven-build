@@ -1,49 +1,25 @@
-def gv
+ pipeline {
+        agent none
 
-pipeline {
-    agent any
-    parameters {
+        tools{
+                maven "Maven"
+        }
 
-    choice(name:'VERSION' , choices: ['1','2','3'])
-    booleanParam(name : "execute" , defaultValue: true )
-    }
-    stages {
-        stage("init") {
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
             steps {
-                script {
-                    gv = load "script.groovy"
-                }
+              withSonarQubeEnv('sonarqube') {
+                sh 'mvn clean package sonar:sonar'
+              }
             }
-        }
-        stage("build jar") {
+          }
+          stage("Quality Gate") {
             steps {
-                script {
-                    echo "building jar"
-                    //gv.buildJar()
-                }
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
+          }
         }
-        stage("build image") {
-            when {
-                expression {
-                        params.execute
-                }
-            }
-            steps {
-                script {
-                    echo "building image"
-                    //gv.buildImage()
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-                script {
-                     echo "deploying"
-                     echo "deploying version ${params.VERSION}"
-                    //gv.deployApp()
-                }
-            }
-        }
-    }
-}
+ }
