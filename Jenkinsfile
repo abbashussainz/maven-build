@@ -21,5 +21,11 @@
               }
             }
           }
+         
+         stage("maven packaging"){
+          steps{
+           sh 'mvn clean package'
+          }
+         }
         }
  }
