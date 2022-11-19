@@ -28,7 +28,7 @@
           }
          }
          
-         stage(Build Image) {
+         stage("Build Image") {
           steps{
            sh 'docker build -t java-maven-app:1.0 .'
           }
