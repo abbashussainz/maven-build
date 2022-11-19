@@ -22,10 +22,17 @@
             }
           }
          
-         stage("maven packaging"){
+         stage("Maven Packaging"){
           steps{
            sh 'mvn package'
           }
          }
+         
+         stage(Build Image) {
+          steps{
+           sh 'docker build -t java-maven-app:1.0 .'
+          }
+         }
+         
         }
  }
