@@ -30,7 +30,7 @@
          
          stage("Build Image") {
           steps{
-           sh 'docker build -t java-maven-app:1.0 .'
+           sh 'sudo docker build -t java-maven-app:1.0 .'
           }
          }
          
