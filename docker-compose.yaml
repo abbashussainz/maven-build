@@ -7,16 +7,14 @@ services:
     networks:
       - mynetwork
   jenkins:
-    image : jenkins/jenkins:lts
+    image: jenkins/jenkins:lts
     ports:
       - 8080:8080
     networks :
     - mynetwork
     volumes:
-      - jenkins_home:/var/jenkins_home
-networks :
-  mynetwork :
-
+            - jenkins_home:/var/jenkins_home
 volumes:
-  jenkins_home:
-    driver: local
+        jenkins_home:
+networks:
+  mynetwork :
