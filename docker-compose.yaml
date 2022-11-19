@@ -6,6 +6,10 @@ services:
       - 9000:9000
     networks:
       - mynetwork
+    volumes:
+      - SonarQube_data:/opt/SonarQube/data
+      - SonarQube_extensions:/opt/SonarQube/extensions
+      - SonarQube_logs:/opt/SonarQube/logs
   jenkins:
     image: jenkins/jenkins:lts
     privileged: true
