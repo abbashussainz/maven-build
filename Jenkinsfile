@@ -34,9 +34,11 @@
           }
          }
          
-         stage("Logging Into ECR")
+         stage("Logging Into ECR"){
          steps{
            sh 'aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 266454083192.dkr.ecr.ap-northeast-1.amazonaws.com'
-          }
+         } 
+         }
+         
         }
  }
