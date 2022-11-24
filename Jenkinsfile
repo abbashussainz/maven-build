@@ -40,7 +40,7 @@
          } 
          }
          
-         stage("Puching Image To ECR"){
+         stage("Pushing Image To ECR"){
           steps{
            sh 'docker tag java-maven-app:1.0 266454083192.dkr.ecr.ap-northeast-1.amazonaws.com/maven-app:1.0'
            sh 'docker push 266454083192.dkr.ecr.ap-northeast-1.amazonaws.com/maven-app:1.0'
